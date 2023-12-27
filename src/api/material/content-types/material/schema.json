@@ -12,30 +12,31 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "material_title": {
-      "type": "string"
+    "title": {
+      "type": "string",
+      "required": true
     },
-    "material_description": {
+    "description": {
       "type": "text"
     },
-    "video_url": {
+    "video": {
       "type": "media",
       "multiple": false,
-      "required": false,
+      "required": true,
       "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
+        "videos"
       ]
     },
     "module": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::module.module"
+      "relation": "manyToOne",
+      "target": "api::module.module",
+      "inversedBy": "materials"
     },
-    "material_id": {
-      "type": "uid"
+    "order": {
+      "type": "integer",
+      "required": true,
+      "min": 1
     }
   }
 }

@@ -12,19 +12,28 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "module_title": {
+    "title": {
       "type": "string"
     },
-    "module_description": {
+    "description": {
       "type": "text"
     },
     "course": {
       "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::course.course"
+      "relation": "manyToOne",
+      "target": "api::course.course",
+      "inversedBy": "modules"
     },
-    "module_id": {
-      "type": "uid"
+    "materials": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::material.material",
+      "mappedBy": "module"
+    },
+    "order": {
+      "type": "integer",
+      "required": true,
+      "min": 1
     }
   }
 }

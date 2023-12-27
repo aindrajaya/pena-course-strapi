@@ -12,39 +12,22 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "course_title": {
-      "type": "string"
+    "title": {
+      "type": "string",
+      "required": true
     },
     "short_description": {
-      "type": "string"
-    },
-    "course_image": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
-    },
-    "course_video": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
+      "type": "string",
+      "required": false
     },
     "long_description": {
       "type": "blocks"
     },
-    "course_id": {
-      "type": "uid"
+    "modules": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::module.module",
+      "mappedBy": "course"
     }
   }
 }

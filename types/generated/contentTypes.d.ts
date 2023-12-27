@@ -780,12 +780,14 @@ export interface ApiCourseCourse extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    course_title: Attribute.String;
+    title: Attribute.String & Attribute.Required;
     short_description: Attribute.String;
-    course_image: Attribute.Media;
-    course_video: Attribute.Media;
     long_description: Attribute.Blocks;
-    course_id: Attribute.UID;
+    modules: Attribute.Relation<
+      'api::course.course',
+      'oneToMany',
+      'api::module.module'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -816,15 +818,19 @@ export interface ApiMaterialMaterial extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    material_title: Attribute.String;
-    material_description: Attribute.Text;
-    video_url: Attribute.Media;
+    title: Attribute.String & Attribute.Required;
+    description: Attribute.Text;
+    video: Attribute.Media & Attribute.Required;
     module: Attribute.Relation<
       'api::material.material',
-      'oneToOne',
+      'manyToOne',
       'api::module.module'
     >;
-    material_id: Attribute.UID;
+    order: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetMinMax<{
+        min: 1;
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -855,14 +861,23 @@ export interface ApiModuleModule extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    module_title: Attribute.String;
-    module_description: Attribute.Text;
+    title: Attribute.String;
+    description: Attribute.Text;
     course: Attribute.Relation<
       'api::module.module',
-      'oneToOne',
+      'manyToOne',
       'api::course.course'
     >;
-    module_id: Attribute.UID;
+    materials: Attribute.Relation<
+      'api::module.module',
+      'oneToMany',
+      'api::material.material'
+    >;
+    order: Attribute.Integer &
+      Attribute.Required &
+      Attribute.SetMinMax<{
+        min: 1;
+      }>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
