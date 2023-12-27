@@ -781,13 +781,14 @@ export interface ApiCourseCourse extends Schema.CollectionType {
   };
   attributes: {
     title: Attribute.String & Attribute.Required;
-    short_description: Attribute.String;
+    short_description: Attribute.String & Attribute.Required;
     long_description: Attribute.Blocks;
     modules: Attribute.Relation<
       'api::course.course',
       'oneToMany',
       'api::module.module'
     >;
+    thumbnail: Attribute.Media & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -819,7 +820,7 @@ export interface ApiMaterialMaterial extends Schema.CollectionType {
   };
   attributes: {
     title: Attribute.String & Attribute.Required;
-    description: Attribute.Text;
+    description: Attribute.Text & Attribute.Required;
     video: Attribute.Media & Attribute.Required;
     module: Attribute.Relation<
       'api::material.material',
@@ -862,7 +863,7 @@ export interface ApiModuleModule extends Schema.CollectionType {
   };
   attributes: {
     title: Attribute.String;
-    description: Attribute.Text;
+    description: Attribute.Text & Attribute.Required;
     course: Attribute.Relation<
       'api::module.module',
       'manyToOne',

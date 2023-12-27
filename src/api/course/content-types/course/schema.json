@@ -18,7 +18,7 @@
     },
     "short_description": {
       "type": "string",
-      "required": false
+      "required": true
     },
     "long_description": {
       "type": "blocks"
@@ -28,6 +28,14 @@
       "relation": "oneToMany",
       "target": "api::module.module",
       "mappedBy": "course"
+    },
+    "thumbnail": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     }
   }
 }

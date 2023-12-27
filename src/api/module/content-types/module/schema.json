@@ -16,7 +16,8 @@
       "type": "string"
     },
     "description": {
-      "type": "text"
+      "type": "text",
+      "required": true
     },
     "course": {
       "type": "relation",
