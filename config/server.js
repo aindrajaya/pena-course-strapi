@@ -1,10 +1,15 @@
-module.exports = ({ env }) => ({
-  host: env('HOST', '0.0.0.0'),
-  port: env.int('PORT', 1337),
+module.exports = ({env}) => ({
+  proxy: true,
+  url: env('HEROKU_URL'),
+  host: "0.0.0.0",
+  port: process.env.PORT,
   app: {
     keys: env.array('APP_KEYS'),
   },
-  webhooks: {
-    populateRelations: env.bool('WEBHOOKS_POPULATE_RELATIONS', false),
-  },
+  admin: {
+    auth: {
+      secret: env('ADMIN_JWT_SECRET'),
+    }
+  }
 });
+  
