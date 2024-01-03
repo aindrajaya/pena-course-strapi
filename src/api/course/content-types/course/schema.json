@@ -36,6 +36,17 @@
       "allowedTypes": [
         "images"
       ]
+    },
+    "tech_stacks": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::tech-stack.tech-stack"
+    },
+    "tech_stack": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::tech-stack.tech-stack",
+      "inversedBy": "courses"
     }
   }
 }
