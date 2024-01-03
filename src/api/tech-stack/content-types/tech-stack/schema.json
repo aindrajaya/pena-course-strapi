@@ -17,19 +17,19 @@
       "required": true,
       "unique": true
     },
-    "courses": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::course.course",
-      "mappedBy": "tech_stack"
-    },
     "logo": {
-      "allowedTypes": [
-        "images"
-      ],
       "type": "media",
       "multiple": false,
-      "required": true
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "courses": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::course.course",
+      "inversedBy": "tech_stacks"
     }
   }
 }

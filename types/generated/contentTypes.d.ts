@@ -791,12 +791,7 @@ export interface ApiCourseCourse extends Schema.CollectionType {
     thumbnail: Attribute.Media & Attribute.Required;
     tech_stacks: Attribute.Relation<
       'api::course.course',
-      'oneToMany',
-      'api::tech-stack.tech-stack'
-    >;
-    tech_stack: Attribute.Relation<
-      'api::course.course',
-      'manyToOne',
+      'manyToMany',
       'api::tech-stack.tech-stack'
     >;
     createdAt: Attribute.DateTime;
@@ -920,12 +915,12 @@ export interface ApiTechStackTechStack extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String & Attribute.Required & Attribute.Unique;
+    logo: Attribute.Media & Attribute.Required;
     courses: Attribute.Relation<
       'api::tech-stack.tech-stack',
-      'oneToMany',
+      'manyToMany',
       'api::course.course'
     >;
-    logo: Attribute.Media & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
