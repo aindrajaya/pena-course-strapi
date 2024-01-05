@@ -25,7 +25,7 @@
     },
     "logo_link": {
       "type": "string",
-      "regex": "^https:\\/\\/drive\\.google\\.com\\/uc\\?export=view&id=[a-zA-Z0-9_]+$",
+      "regex": "https:\\/\\/drive\\.google\\.com\\/uc\\?export=view&id=[a-zA-Z0-9_]+",
       "required": true
     }
   }
