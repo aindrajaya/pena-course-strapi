@@ -34,7 +34,7 @@
     "video_link": {
       "type": "string",
       "required": true,
-      "regex": "^https:\\/\\/www\\.youtube\\.com\\/embed\\/[a-zA-Z0-9_-]+(\\?.*)?$"
+      "regex": "https:\\/\\/www\\.youtube\\.com\\/embed\\/[a-zA-Z0-9_-]+(\\?.*)?$"
     }
   }
 }

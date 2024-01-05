@@ -867,7 +867,7 @@ export interface ApiModuleModule extends Schema.CollectionType {
     draftAndPublish: true;
   };
   attributes: {
-    title: Attribute.String;
+    title: Attribute.String & Attribute.Required;
     description: Attribute.Text & Attribute.Required;
     course: Attribute.Relation<
       'api::module.module',
