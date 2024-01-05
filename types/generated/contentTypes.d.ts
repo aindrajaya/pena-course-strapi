@@ -789,6 +789,11 @@ export interface ApiCourseCourse extends Schema.CollectionType {
       'api::module.module'
     >;
     thumbnail: Attribute.Media & Attribute.Required;
+    tech_stacks: Attribute.Relation<
+      'api::course.course',
+      'manyToMany',
+      'api::tech-stack.tech-stack'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -897,6 +902,43 @@ export interface ApiModuleModule extends Schema.CollectionType {
   };
 }
 
+export interface ApiTechStackTechStack extends Schema.CollectionType {
+  collectionName: 'tech_stacks';
+  info: {
+    singularName: 'tech-stack';
+    pluralName: 'tech-stacks';
+    displayName: 'Tech Stack';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String & Attribute.Required & Attribute.Unique;
+    logo: Attribute.Media & Attribute.Required;
+    courses: Attribute.Relation<
+      'api::tech-stack.tech-stack',
+      'manyToMany',
+      'api::course.course'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::tech-stack.tech-stack',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::tech-stack.tech-stack',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -918,6 +960,7 @@ declare module '@strapi/types' {
       'api::course.course': ApiCourseCourse;
       'api::material.material': ApiMaterialMaterial;
       'api::module.module': ApiModuleModule;
+      'api::tech-stack.tech-stack': ApiTechStackTechStack;
     }
   }
 }
