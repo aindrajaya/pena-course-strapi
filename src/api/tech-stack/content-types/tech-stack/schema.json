@@ -17,19 +17,16 @@
       "required": true,
       "unique": true
     },
-    "logo": {
-      "type": "media",
-      "multiple": false,
-      "required": true,
-      "allowedTypes": [
-        "images"
-      ]
-    },
     "courses": {
       "type": "relation",
       "relation": "manyToMany",
       "target": "api::course.course",
       "inversedBy": "tech_stacks"
+    },
+    "logo_link": {
+      "type": "string",
+      "regex": "^https:\\/\\/drive\\.google\\.com\\/uc\\?export=view&id=[a-zA-Z0-9_]+$",
+      "required": true
     }
   }
 }

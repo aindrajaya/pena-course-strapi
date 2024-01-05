@@ -782,19 +782,18 @@ export interface ApiCourseCourse extends Schema.CollectionType {
   attributes: {
     title: Attribute.String & Attribute.Required;
     short_description: Attribute.String & Attribute.Required;
-    long_description: Attribute.Blocks;
+    long_description: Attribute.Blocks & Attribute.Required;
     modules: Attribute.Relation<
       'api::course.course',
       'oneToMany',
       'api::module.module'
     >;
-    thumbnail: Attribute.Media & Attribute.Required;
     tech_stacks: Attribute.Relation<
       'api::course.course',
       'manyToMany',
       'api::tech-stack.tech-stack'
     >;
-    thumbnail_link: Attribute.String;
+    thumbnail_link: Attribute.String & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -827,7 +826,6 @@ export interface ApiMaterialMaterial extends Schema.CollectionType {
   attributes: {
     title: Attribute.String & Attribute.Required;
     description: Attribute.Text & Attribute.Required;
-    video: Attribute.Media & Attribute.Required;
     module: Attribute.Relation<
       'api::material.material',
       'manyToOne',
@@ -838,7 +836,7 @@ export interface ApiMaterialMaterial extends Schema.CollectionType {
       Attribute.SetMinMax<{
         min: 1;
       }>;
-    video_link: Attribute.String;
+    video_link: Attribute.String & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -917,12 +915,12 @@ export interface ApiTechStackTechStack extends Schema.CollectionType {
   };
   attributes: {
     name: Attribute.String & Attribute.Required & Attribute.Unique;
-    logo: Attribute.Media & Attribute.Required;
     courses: Attribute.Relation<
       'api::tech-stack.tech-stack',
       'manyToMany',
       'api::course.course'
     >;
+    logo_link: Attribute.String & Attribute.Required;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

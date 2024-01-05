@@ -21,21 +21,14 @@
       "required": true
     },
     "long_description": {
-      "type": "blocks"
+      "type": "blocks",
+      "required": true
     },
     "modules": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::module.module",
       "mappedBy": "course"
-    },
-    "thumbnail": {
-      "type": "media",
-      "multiple": false,
-      "required": true,
-      "allowedTypes": [
-        "images"
-      ]
     },
     "tech_stacks": {
       "type": "relation",
@@ -44,7 +37,9 @@
       "mappedBy": "courses"
     },
     "thumbnail_link": {
-      "type": "string"
+      "type": "string",
+      "required": true,
+      "regex": "^https:\\/\\/drive\\.google\\.com\\/uc\\?export=view&id=[a-zA-Z0-9_]+$"
     }
   }
 }

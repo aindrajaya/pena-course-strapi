@@ -20,14 +20,6 @@
       "type": "text",
       "required": true
     },
-    "video": {
-      "type": "media",
-      "multiple": false,
-      "required": true,
-      "allowedTypes": [
-        "videos"
-      ]
-    },
     "module": {
       "type": "relation",
       "relation": "manyToOne",
@@ -40,7 +32,9 @@
       "min": 1
     },
     "video_link": {
-      "type": "string"
+      "type": "string",
+      "required": true,
+      "regex": "^https:\\/\\/www\\.youtube\\.com\\/embed\\/[a-zA-Z0-9]+$"
     }
   }
 }
