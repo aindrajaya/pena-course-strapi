@@ -38,6 +38,9 @@
       "type": "integer",
       "required": true,
       "min": 1
+    },
+    "video_link": {
+      "type": "string"
     }
   }
 }
